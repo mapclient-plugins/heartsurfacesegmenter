@@ -3,14 +3,14 @@
 MAP Client Plugin Step
 '''
 import os
-
 import json
-
-
-from PySide import QtGui
 
 from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
 from mapclientplugins.heartsurfacestep.configuredialog import ConfigureDialog
+from mapclientplugins.heartsurfacestep.view.heartsurfacewidget import HeartSurfaceWidget
+from mapclientplugins.heartsurfacestep.model.master import HeartSurfaceModel
+from mapclientplugins.heartsurfacestep.model.node import ENDO, EPI
+from mapclientplugins.heartsurfacestep.model.image import LONG_AXIS, SHORT_AXIS
 
 
 class HeartSurfaceStep(WorkflowStepMountPoint):
@@ -34,9 +34,14 @@ class HeartSurfaceStep(WorkflowStepMountPoint):
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#uses',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#images'))
+        self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
+                      'http://physiomeproject.org/workflow/1.0/rdf-schema#uses',
+                      'http://physiomeproject.org/workflow/1.0/rdf-schema#images'))
         self._config = {}
         self._config['identifier'] = ''
-
+        self._image_data_long_axis = None
+        self._image_data_short_axis = None
+        self._view = None
 
     def execute(self):
         '''
@@ -44,8 +49,19 @@ class HeartSurfaceStep(WorkflowStepMountPoint):
         Make sure you call the _doneExecution() method when finished.  This method
         may be connected up to a button in a widget for example.
         '''
-        # Put your execute step code here before calling the '_doneExecution' method.
-        self._doneExecution()
+        if self._view is None:
+            model = HeartSurfaceModel()
+            model.setLocation(os.path.join(self._location, self._config['identifier']))
+            self._view = HeartSurfaceWidget(model)
+            self._view.registerDoneExecution(self._doneExecution)
+
+        if self._image_data_long_axis is not None:
+            self._view.setImageData(LONG_AXIS, self._image_data_long_axis)
+        if self._image_data_short_axis is not None:
+            self._view.setImageData(SHORT_AXIS, self._image_data_short_axis)
+        self._view.initialise()
+        
+        self._setCurrentWidget(self._view)
 
     def setPortData(self, index, dataIn):
         '''
@@ -53,7 +69,10 @@ class HeartSurfaceStep(WorkflowStepMountPoint):
         The index is the index of the port in the port list.  If there is only one
         uses port for this step then the index can be ignored.
         '''
-        portData2 = dataIn # http://physiomeproject.org/workflow/1.0/rdf-schema#images
+        if index == 2:
+            self._image_data_long_axis = dataIn # http://physiomeproject.org/workflow/1.0/rdf-schema#images
+        else:
+            self._image_data_short_axis = dataIn # http://physiomeproject.org/workflow/1.0/rdf-schema#images
 
     def getPortData(self, index):
         '''
@@ -62,11 +81,11 @@ class HeartSurfaceStep(WorkflowStepMountPoint):
         provides port for this step then the index can be ignored.
         '''
         if index == 0:
-            portData0 = None # http://physiomeproject.org/workflow/1.0/rdf-schema#pointcloud
-            return portData0
+            # http://physiomeproject.org/workflow/1.0/rdf-schema#pointcloud
+            return self._view.getPointCloud(ENDO)
         else:
-            portData1 = None # http://physiomeproject.org/workflow/1.0/rdf-schema#pointcloud
-            return portData1
+            # http://physiomeproject.org/workflow/1.0/rdf-schema#pointcloud
+            return self._view.getPointCloud(EPI)
 
     def configure(self):
         '''
