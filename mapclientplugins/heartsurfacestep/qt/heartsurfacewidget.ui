@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>729</width>
-    <height>518</height>
+    <width>770</width>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,7 +50,16 @@ QToolBox {
      </property>
      <widget class="QWidget" name="dockWidgetContents">
       <layout class="QVBoxLayout" name="verticalLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -62,15 +71,15 @@ QToolBox {
           <enum>QFrame::Plain</enum>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="pageFile">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>163</width>
-            <height>397</height>
+            <width>174</width>
+            <height>368</height>
            </rect>
           </property>
           <attribute name="label">
@@ -182,8 +191,8 @@ QToolBox {
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>163</width>
-            <height>397</height>
+            <width>174</width>
+            <height>368</height>
            </rect>
           </property>
           <attribute name="label">
@@ -201,6 +210,30 @@ QToolBox {
              </item>
              <item>
               <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QPushButton" name="pushButtonHideAll">
+               <property name="text">
+                <string>Hide All</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_5">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -246,6 +279,14 @@ QToolBox {
           </layout>
          </widget>
          <widget class="QWidget" name="pageSegmentation">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>185</width>
+            <height>401</height>
+           </rect>
+          </property>
           <attribute name="label">
            <string>Segmentation</string>
           </attribute>
@@ -255,7 +296,7 @@ QToolBox {
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
-               <verstretch>1</verstretch>
+               <verstretch>0</verstretch>
               </sizepolicy>
              </property>
              <property name="title">
@@ -290,32 +331,41 @@ QToolBox {
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
-               <verstretch>1</verstretch>
+               <verstretch>0</verstretch>
               </sizepolicy>
              </property>
              <property name="title">
               <string>Heart Surface</string>
              </property>
-             <widget class="QComboBox" name="comboBoxHeartSurface">
-              <property name="geometry">
-               <rect>
-                <x>10</x>
-                <y>30</y>
-                <width>111</width>
-                <height>23</height>
-               </rect>
-              </property>
+             <layout class="QVBoxLayout" name="verticalLayout_6">
               <item>
-               <property name="text">
-                <string>Endocardial</string>
-               </property>
+               <widget class="QComboBox" name="comboBoxHeartSurface">
+                <item>
+                 <property name="text">
+                  <string>Endocardial</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Epicardial</string>
+                 </property>
+                </item>
+               </widget>
               </item>
               <item>
-               <property name="text">
-                <string>Epicardial</string>
-               </property>
+               <spacer name="verticalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
-             </widget>
+             </layout>
             </widget>
            </item>
            <item>

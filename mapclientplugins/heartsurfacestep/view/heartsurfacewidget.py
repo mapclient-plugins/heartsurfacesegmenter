@@ -32,6 +32,7 @@ class HeartSurfaceWidget(QtGui.QWidget):
     def _makeConnections(self):
         self._ui.pushButtonDone.clicked.connect(self._doneButtonClicked)
         self._ui.pushButtonViewAll.clicked.connect(self._viewAllButtonClicked)
+        self._ui.pushButtonHideAll.clicked.connect(self._hideAllButtonClicked)
         self._ui.listWidget.itemChanged.connect(self._itemChanged)
         self._ui.comboBoxHeartSurface.currentIndexChanged.connect(self._heartSurfaceChanged)
         self._ui.spinBoxPointSize.valueChanged.connect(self._pointSizeChanged)
@@ -89,8 +90,16 @@ class HeartSurfaceWidget(QtGui.QWidget):
         self._callback()
         
     def _viewAllButtonClicked(self):
+        self._master_model.beginHierarchicalChange()
         self._ui.widgetZinc.viewAll()
         for index in range(self._ui.listWidget.count()):
             item = self._ui.listWidget.item(index)
             item.setCheckState(QtCore.Qt.Checked)
-        
+        self._master_model.endHierarchicalChange()
+ 
+    def _hideAllButtonClicked(self):
+        self._master_model.beginHierarchicalChange()
+        for index in range(self._ui.listWidget.count()):
+            item = self._ui.listWidget.item(index)
+            item.setCheckState(QtCore.Qt.Unchecked)
+        self._master_model.endHierarchicalChange()
