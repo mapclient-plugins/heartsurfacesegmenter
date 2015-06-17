@@ -3,8 +3,8 @@ Created on May 22, 2015
 
 @author: hsorby
 '''
-from mapclientplugins.heartsurfacestep.scene.image import ImageScene
-from mapclientplugins.heartsurfacestep.scene.node import NodeScene
+from mapclientplugins.heartsurfacesegmenterstep.scene.image import ImageScene
+from mapclientplugins.heartsurfacesegmenterstep.scene.node import NodeScene
 
 class HeartSurfaceScene(object):
     '''

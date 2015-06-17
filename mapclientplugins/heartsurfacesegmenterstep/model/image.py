@@ -7,12 +7,12 @@ import os
 import re
 
 from opencmiss.zinc.field import Field
-
-from mapclientplugins.heartsurfacestep.utils.image import extractImageCorners
-from mapclientplugins.heartsurfacestep.utils.zinc import createFiniteElementField,\
-    create2DFiniteElement
 from opencmiss.zinc.status import OK
-from mapclientplugins.heartsurfacestep.maths.algorithms import calculatePlaneNormal
+
+from mapclientplugins.heartsurfacesegmenterstep.utils.image import extractImageCorners
+from mapclientplugins.heartsurfacesegmenterstep.utils.zinc import createFiniteElementField,\
+    create2DFiniteElement
+from mapclientplugins.heartsurfacesegmenterstep.maths.algorithms import calculatePlaneNormal
 
 LONG_AXIS = 1
 SHORT_AXIS = 2

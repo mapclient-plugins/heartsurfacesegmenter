@@ -6,21 +6,21 @@ import os
 import json
 
 from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
-from mapclientplugins.heartsurfacestep.configuredialog import ConfigureDialog
-from mapclientplugins.heartsurfacestep.view.heartsurfacewidget import HeartSurfaceWidget
-from mapclientplugins.heartsurfacestep.model.master import HeartSurfaceModel
-from mapclientplugins.heartsurfacestep.model.node import ENDO, EPI
-from mapclientplugins.heartsurfacestep.model.image import LONG_AXIS, SHORT_AXIS
+from mapclientplugins.heartsurfacesegmenterstep.configuredialog import ConfigureDialog
+from mapclientplugins.heartsurfacesegmenterstep.view.heartsurfacewidget import HeartSurfaceWidget
+from mapclientplugins.heartsurfacesegmenterstep.model.master import HeartSurfaceModel
+from mapclientplugins.heartsurfacesegmenterstep.model.node import ENDO, EPI
+from mapclientplugins.heartsurfacesegmenterstep.model.image import LONG_AXIS, SHORT_AXIS
 
 
-class HeartSurfaceStep(WorkflowStepMountPoint):
+class HeartSurfaceSegmenterStep(WorkflowStepMountPoint):
     '''
     Skeleton step which is intended to be a helpful starting point
     for new steps.
     '''
 
     def __init__(self, location):
-        super(HeartSurfaceStep, self).__init__('Heart Surface', location)
+        super(HeartSurfaceSegmenterStep, self).__init__('Heart Surface Segmenter', location)
         self._configured = False # A step cannot be executed until it has been configured.
         self._category = 'Segmentation'
         # Add any other initialisation code here:

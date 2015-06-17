@@ -6,7 +6,7 @@ import sys, os
 # list all dependencies here.
 dependencies = [] # Insert plugin dependencies here
 
-setup(name=u'mapclientplugins.heartsurfacestep',
+setup(name=u'mapclientplugins.heartsurfacesegmenterstep',
       version='0.0',
       description='',
       long_description="",

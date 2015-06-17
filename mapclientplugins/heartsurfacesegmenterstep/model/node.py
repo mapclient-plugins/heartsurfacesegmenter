@@ -3,7 +3,7 @@ Created on May 22, 2015
 
 @author: hsorby
 '''
-from mapclientplugins.heartsurfacestep.utils.zinc import createFiniteElementField
+from mapclientplugins.heartsurfacesegmenterstep.utils.zinc import createFiniteElementField
 from opencmiss.zinc.field import Field
 from opencmiss.zinc.status import OK
 import json

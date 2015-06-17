@@ -5,8 +5,8 @@ Created on May 21, 2015
 '''
 from opencmiss.zinc.context import Context
 
-from mapclientplugins.heartsurfacestep.model.image import ImageModel
-from mapclientplugins.heartsurfacestep.model.node import NodeModel
+from mapclientplugins.heartsurfacesegmenterstep.model.image import ImageModel
+from mapclientplugins.heartsurfacesegmenterstep.model.node import NodeModel
 import os
 
 class HeartSurfaceModel(object):
