@@ -7,7 +7,7 @@ from PySide import QtCore
 
 from opencmiss.zincwidgets.sceneviewerwidget import SceneviewerWidget
 
-from mapclientplugins.heartsurfacestep.maths.algorithms import calculateLinePlaneIntersection
+from mapclientplugins.heartsurfacesegmenterstep.maths.algorithms import calculateLinePlaneIntersection
 
 class SegmentationWidget(SceneviewerWidget):
     '''
@@ -46,7 +46,7 @@ class SegmentationWidget(SceneviewerWidget):
                 self._model.endHierarchicalChange()
             else:
                 node_graphic = self.getNearestGraphicsNode(event.x(), event.y())
-                nearest_graphics = self.getNeareshGraphics()
+                nearest_graphics = self.getNearestGraphics()
                 if node_graphic == nearest_graphics:
                     node = self.getNearestNode(event.x(), event.y())
                     node_model = self._model.getNodeModel()

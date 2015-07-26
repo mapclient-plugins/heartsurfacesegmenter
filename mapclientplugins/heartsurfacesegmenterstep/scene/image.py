@@ -3,7 +3,7 @@ Created on May 22, 2015
 
 @author: hsorby
 '''
-from mapclientplugins.heartsurfacestep.definitions import ELEMENT_OUTLINE_GRAPHIC_NAME,\
+from mapclientplugins.heartsurfacesegmenterstep.definitions import ELEMENT_OUTLINE_GRAPHIC_NAME,\
     IMAGE_PLANE_GRAPHIC_NAME
 from opencmiss.zinc.glyph import Glyph
 from opencmiss.zinc.field import Field

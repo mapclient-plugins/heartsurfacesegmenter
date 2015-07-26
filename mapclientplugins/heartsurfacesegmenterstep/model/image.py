@@ -27,23 +27,17 @@ class ImageModel(object):
         Constructor
         '''
         self._context = context
-        self._image_data = {}
-        self._images = []
+        self.clear()
 
     def getContext(self):
         return self._context
             
     def clear(self):
-        if hasattr(self, '_images') and self._images is not None:
-            for image in self._images:
-                image.free()
         self._image_data = {}
         self._images = []
-#         if hasattr(self, '_region') and self._region is not None:
-#             self._removeImageRegion()
         
-    def initialise(self):
-        self._createImageRegion()
+    def initialise(self, region):
+        self._createImageRegion(region)
         self._computeImages(LONG_AXIS)
         self._computeImages(SHORT_AXIS)
     
@@ -109,25 +103,18 @@ class ImageModel(object):
                 region = self._region.createChild('SA{0}'.format(SA_count))
 
             self._images.append(ImageTexture(self, directory, filename, region))
-            
-    def _removeImageRegion(self):
-        '''
-        Removes a child region of the root region called 'image'.  Resets
-        the handle to the region to None.
-        '''
-        self._context.getDefaultRegion().removeChild(self._region)
-        self._region = None
-        
-    def _createImageRegion(self):
+                    
+    def _createImageRegion(self, region):
         '''
         Creates a child region of the root region called 'image'.  Stores
         a handle to the region in the class attribute '_region'.
         '''
-        region = self._context.getDefaultRegion().findChildByName('image')
-        if not region.isValid():
-            region = self._context.getDefaultRegion().createChild('image')
-            
-        self._region = region
+        self._region = region.createChild('image_region')
+#         region = self._context.getDefaultRegion().findChildByName('image')
+#         if not region.isValid():
+#             region = self._context.getDefaultRegion().createChild('image')
+#             
+#         self._region = region
 
 
 def determineAxis(name):

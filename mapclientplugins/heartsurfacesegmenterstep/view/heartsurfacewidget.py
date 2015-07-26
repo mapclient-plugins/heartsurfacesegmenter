@@ -5,9 +5,9 @@ Created on May 21, 2015
 '''
 from PySide import QtGui, QtCore
 
-from mapclientplugins.heartsurfacestep.view.ui_heartsurfacewidget import Ui_HeartSurfaceWidget
-from mapclientplugins.heartsurfacestep.scene.master import HeartSurfaceScene
-from mapclientplugins.heartsurfacestep.model.node import EPI, ENDO
+from mapclientplugins.heartsurfacesegmenterstep.view.ui_heartsurfacewidget import Ui_HeartSurfaceWidget
+from mapclientplugins.heartsurfacesegmenterstep.scene.master import HeartSurfaceScene
+from mapclientplugins.heartsurfacesegmenterstep.model.node import EPI, ENDO
 
 class HeartSurfaceWidget(QtGui.QWidget):
     '''
@@ -30,7 +30,7 @@ class HeartSurfaceWidget(QtGui.QWidget):
         self._makeConnections()
         
     def _makeConnections(self):
-        self._ui.pushButtonDone.clicked.connect(self._doneButtonClicked)
+        self._ui.pushButtonContinue.clicked.connect(self._continueButtonClicked)
         self._ui.pushButtonViewAll.clicked.connect(self._viewAllButtonClicked)
         self._ui.pushButtonHideAll.clicked.connect(self._hideAllButtonClicked)
         self._ui.listWidget.itemChanged.connect(self._itemChanged)
@@ -39,6 +39,17 @@ class HeartSurfaceWidget(QtGui.QWidget):
         self._ui.pushButtonLoad.clicked.connect(self._loadButtonClicked)
         self._ui.pushButtonSave.clicked.connect(self._saveButtonClicked)
         
+        self._ui.widgetZinc.graphicsInitialized.connect(self._graphicsInitialized)
+        
+    def _graphicsInitialized(self):
+        sceneviewer = self._ui.widgetZinc.getSceneviewer()
+        scenepicker = self._ui.widgetZinc.getScenepicker()
+        if sceneviewer is not None and scenepicker is not None:
+            scene = self._master_scene.getScene()
+            sceneviewer.setScene(scene)
+            scenepicker.setScene(scene)
+            sceneviewer.viewAll()
+            
     def _loadButtonClicked(self):
         self._master_model.load()
     
@@ -67,8 +78,12 @@ class HeartSurfaceWidget(QtGui.QWidget):
     def initialise(self):
         self._master_model.initialise()
         self._master_scene.initialise()
-         
         self._setupUi()
+        self._graphicsInitialized()
+        
+    def clear(self):
+        self._master_model.clear()
+        self._master_scene.clear()
         
     def _setupUi(self):
         self._ui.listWidget.clear()
@@ -86,7 +101,7 @@ class HeartSurfaceWidget(QtGui.QWidget):
     def registerDoneExecution(self, callback):
         self._callback = callback
         
-    def _doneButtonClicked(self):
+    def _continueButtonClicked(self):
         self._callback()
         
     def _viewAllButtonClicked(self):

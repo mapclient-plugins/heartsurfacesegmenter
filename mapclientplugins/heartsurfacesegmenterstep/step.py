@@ -54,11 +54,14 @@ class HeartSurfaceSegmenterStep(WorkflowStepMountPoint):
             model.setLocation(os.path.join(self._location, self._config['identifier']))
             self._view = HeartSurfaceWidget(model)
             self._view.registerDoneExecution(self._doneExecution)
+        else:
+            self._view.clear()
 
         if self._image_data_long_axis is not None:
             self._view.setImageData(LONG_AXIS, self._image_data_long_axis)
         if self._image_data_short_axis is not None:
             self._view.setImageData(SHORT_AXIS, self._image_data_short_axis)
+
         self._view.initialise()
         
         self._setCurrentWidget(self._view)

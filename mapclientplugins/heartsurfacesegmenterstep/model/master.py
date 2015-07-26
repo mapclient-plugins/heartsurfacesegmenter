@@ -22,6 +22,7 @@ class HeartSurfaceModel(object):
         self._context = Context('heartsurface')
         self.defineStandardMaterials()
         self.defineStandardGlyphs()
+        self._region = None
         self._image_model = ImageModel(self._context)
         self._node_model = NodeModel(self._context)
         self._location = None
@@ -53,12 +54,17 @@ class HeartSurfaceModel(object):
         self._image_model.setImageData(axis, image_data)
         
     def initialise(self):
-        self._image_model.initialise()
-        self._node_model.initialise()
+        self._region = self._context.createRegion()
+        self._image_model.initialise(self._region)
+        self._node_model.initialise(self._region)
         
     def clear(self):
         self._image_model.clear()
         self._node_model.clear()
+        self._region = None
+        
+    def getRegion(self):
+        return self._region
         
     def getImageModel(self):
         return self._image_model

@@ -3,10 +3,12 @@ Created on May 22, 2015
 
 @author: hsorby
 '''
-from mapclientplugins.heartsurfacesegmenterstep.utils.zinc import createFiniteElementField
+import json
+
 from opencmiss.zinc.field import Field
 from opencmiss.zinc.status import OK
-import json
+
+from mapclientplugins.heartsurfacesegmenterstep.utils.zinc import createFiniteElementField
 
 ENDO = 1
 EPI  = 2
@@ -22,36 +24,21 @@ class NodeModel(object):
         Constructor
         '''
         self._context = context
+        self.clear()
 
     def clear(self):
-        if hasattr(self, '_region'):
-            fieldmodule = self._region.getFieldmodule()
-            nodeset = fieldmodule.findNodesetByFieldDomainType(Field.DOMAIN_TYPE_NODES)
-            nodeset.destroyAllNodes()
-            scene = self._region.getScene()
-            scene.removeAllGraphics()
-            it = fieldmodule.createFielditerator()
-            field = it.next()
-            while field.isValid():
-                if field.isManaged():
-                    field.setManaged(False)
-                    # must reset iterator
-                    it = fieldmodule.createFielditerator()
-                field = it.next()
+        self._active_group = None
+        self._coordinate_field = None
+        self._selection_group = None
+        self._selection_group_field = None
+        self._endo_group = None
+        self._endo_group_field = None
+        self._epi_group = None
+        self._epi_group_field = None
+        self._region = None
             
-            self._active_group = None
-            self._coordinate_field = None
-            self._selection_group = None
-            self._selection_group_field = None
-            self._endo_group = None
-            self._endo_group_field = None
-            self._epi_group = None
-            self._epi_group_field = None
-            self._context.getDefaultRegion().removeChild(self._region)
-            self._region = None
-            
-    def initialise(self):
-        self._setupRegion()
+    def initialise(self, region):
+        self._setupRegion(region)
         self._active_group = self._endo_group
         
     def serialise(self):
@@ -190,8 +177,8 @@ class NodeModel(object):
     def getEpiGroupField(self):
         return self._epi_group_field
 
-    def _setupRegion(self):
-        self._region = self._context.getDefaultRegion().createChild('surfaces')
+    def _setupRegion(self, region):
+        self._region = region.createChild('node_region') #  self._context.createRegion() #  self._context.getDefaultRegion().createChild('surfaces')
         self._coordinate_field = createFiniteElementField(self._region)
         fieldmodule = self._region.getFieldmodule()
         nodeset = fieldmodule.findNodesetByName('nodes')

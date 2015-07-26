@@ -30,3 +30,7 @@ class HeartSurfaceScene(object):
         
     def setNodeGraphicsSize(self, size):
         self._node.setGraphicsSize(size)
+        
+    def getScene(self):
+        return self._master_model.getRegion().getScene()
+        
