@@ -169,8 +169,8 @@ class ImageTexture(object):
             # SWIG cannot handle unicode strings or rather the Zinc interface
             # files cannot handle unicode strings so we convert them to ascii
             # here.
-            if isinstance(absolute_filename, unicode):
-                absolute_filename = absolute_filename.encode('ascii', 'ignore')
+            # if isinstance(absolute_filename, unicode):
+            #     absolute_filename = absolute_filename.encode('ascii', 'ignore')
             stream_information.createStreamresourceFile(absolute_filename)
 
         # Actually read in the image file into the image field.

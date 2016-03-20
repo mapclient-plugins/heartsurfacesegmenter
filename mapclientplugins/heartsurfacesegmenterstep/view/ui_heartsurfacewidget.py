@@ -144,4 +144,4 @@ class Ui_HeartSurfaceWidget(object):
         self.comboBoxHeartSurface.setItemText(0, QtGui.QApplication.translate("HeartSurfaceWidget", "Endocardial", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxHeartSurface.setItemText(1, QtGui.QApplication.translate("HeartSurfaceWidget", "Epicardial", None, QtGui.QApplication.UnicodeUTF8))
 
-from segmentationwidget import SegmentationWidget
+from mapclientplugins.heartsurfacesegmenterstep.view.segmentationwidget import SegmentationWidget
