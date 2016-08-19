@@ -8,19 +8,16 @@ import re
 
 from opencmiss.zinc.field import Field
 from opencmiss.zinc.status import OK
+from opencmiss.utils.zinc import createFiniteElementField, create2DFiniteElement
+from opencmiss.utils.image import extractImageCorners
 
-from mapclientplugins.heartsurfacesegmenterstep.utils.image import extractImageCorners
-from mapclientplugins.heartsurfacesegmenterstep.utils.zinc import createFiniteElementField,\
-    create2DFiniteElement
 from mapclientplugins.heartsurfacesegmenterstep.maths.algorithms import calculatePlaneNormal
 
 LONG_AXIS = 1
 SHORT_AXIS = 2
 
+
 class ImageModel(object):
-    '''
-    classdocs
-    '''
 
     def __init__(self, context):
         '''

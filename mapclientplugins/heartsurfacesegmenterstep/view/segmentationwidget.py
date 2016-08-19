@@ -7,7 +7,7 @@ from PySide import QtCore
 
 from opencmiss.zincwidgets.sceneviewerwidget import SceneviewerWidget
 
-from mapclientplugins.heartsurfacesegmenterstep.maths.algorithms import calculateLinePlaneIntersection
+from opencmiss.utils.maths.algorithms import calculateLinePlaneIntersection
 
 class SegmentationWidget(SceneviewerWidget):
     '''

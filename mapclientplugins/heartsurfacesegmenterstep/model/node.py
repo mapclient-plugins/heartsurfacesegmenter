@@ -7,22 +7,15 @@ import json
 
 from opencmiss.zinc.field import Field
 from opencmiss.zinc.status import OK
-
-from mapclientplugins.heartsurfacesegmenterstep.utils.zinc import createFiniteElementField
+from opencmiss.utils.zinc import createFiniteElementField
 
 ENDO = 1
-EPI  = 2
+EPI = 2
+
 
 class NodeModel(object):
-    '''
-    classdocs
-    '''
-
 
     def __init__(self, context):
-        '''
-        Constructor
-        '''
         self._context = context
         self.clear()
 
