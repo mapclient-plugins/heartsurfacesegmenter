@@ -1,5 +1,9 @@
 from setuptools import setup, find_packages
+from setuptools.command.install import install
+import os
 import io
+
+SETUP_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # List all of your Python package dependencies in the
 # requirements.txt file
@@ -12,8 +16,20 @@ def readfile(filename, split=False):
         return stream.read()
 
 readme = readfile("README.rst", split=True)[3:]  # skip title
-requires = readfile("requirements.txt", split=True)
+# For requirements not hosted on PyPi place listings
+# into the 'requirements.txt' file.
+requires = []  # minimal requirements listing
 software_license = readfile("LICENSE")
+
+
+class InstallCommand(install):
+
+    def run(self):
+        install.run(self)
+        # Automatically install requirements from requirements.txt
+        import subprocess
+        subprocess.call(['pip', 'install', '-r', os.path.join(SETUP_DIR, 'requirements.txt')])
+
 
 setup(name='mapclientplugins.heartsurfacesegmenterstep',
       version='0.1.0',
@@ -24,6 +40,7 @@ setup(name='mapclientplugins.heartsurfacesegmenterstep',
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python",
       ],
+      cmdclass={'install': InstallCommand,},
       author='Hugh Sorby',
       author_email='',
       url='',
