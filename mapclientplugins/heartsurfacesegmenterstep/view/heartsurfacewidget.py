@@ -3,13 +3,13 @@ Created on May 21, 2015
 
 @author: hsorby
 '''
-from PySide import QtGui, QtCore
+from PySide2 import QtCore, QtWidgets
 
 from mapclientplugins.heartsurfacesegmenterstep.view.ui_heartsurfacewidget import Ui_HeartSurfaceWidget
 from mapclientplugins.heartsurfacesegmenterstep.scene.master import HeartSurfaceScene
 from mapclientplugins.heartsurfacesegmenterstep.model.node import EPI, ENDO
 
-class HeartSurfaceWidget(QtGui.QWidget):
+class HeartSurfaceWidget(QtWidgets.QWidget):
     '''
     classdocs
     '''
@@ -90,7 +90,7 @@ class HeartSurfaceWidget(QtGui.QWidget):
         region_names = self._master_model.getImageRegionNames()
         
         for region_name in region_names:
-            item = QtGui.QListWidgetItem(self._ui.listWidget)
+            item = QtWidgets.QListWidgetItem(self._ui.listWidget)
             item.setText(region_name)
             item.setFlags(QtCore.Qt.ItemIsUserCheckable | item.flags())
             item.setCheckState(QtCore.Qt.Checked)
