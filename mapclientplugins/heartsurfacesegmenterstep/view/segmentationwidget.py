@@ -9,11 +9,11 @@ from opencmiss.zincwidgets.sceneviewerwidget import SceneviewerWidget
 
 from opencmiss.utils.maths.algorithms import calculateLinePlaneIntersection
 
+
 class SegmentationWidget(SceneviewerWidget):
     '''
     classdocs
     '''
-
 
     def __init__(self, parent=None):
         '''
@@ -22,16 +22,16 @@ class SegmentationWidget(SceneviewerWidget):
         super(SegmentationWidget, self).__init__(parent)
         self._model = None
         self._active_button = QtCore.Qt.NoButton
-        
+
     def setModel(self, model):
         self._model = model
-        
+
     def mousePressEvent(self, event):
         if self._active_button != QtCore.Qt.NoButton:
             return
 
         self._active_button = event.button()
-        
+
         self._handle_mouse_events = False
         self._active_plane = None
         self._active_node = None
@@ -96,6 +96,5 @@ class SegmentationWidget(SceneviewerWidget):
         far_plane_point = self.unproject(x, -y, -1.0)
         near_plane_point = self.unproject(x, -y, 1.0)
         point_on_plane = calculateLinePlaneIntersection(near_plane_point, far_plane_point, plane_point, plane_normal)
-        
+
         return point_on_plane
-    

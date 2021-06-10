@@ -17,7 +17,7 @@ This file is part of MAP Client. (http://launchpad.net/mapclient)
     You should have received a copy of the GNU General Public License
     along with MAP Client.  If not, see <http://www.gnu.org/licenses/>..
 '''
-from opencmiss.utils.maths.vectorops import add, dot, sub, mult,\
+from opencmiss.utils.maths.vectorops import add, dot, sub, mult, \
     cross, normalize
 
 
@@ -36,4 +36,3 @@ def calculatePlaneNormal(pt1, pt2, pt3):
     dir_2 = sub(pt3, pt1)
     cross_vec = cross(dir_1, dir_2)
     return normalize(cross_vec)
-
