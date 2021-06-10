@@ -12,7 +12,7 @@ from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
-from mapclientplugins\heartsurfacesegmenterstep\view\segmentationwidget import SegmentationWidget
+from mapclientplugins.heartsurfacesegmenterstep.view.segmentationwidget import SegmentationWidget
 
 
 class Ui_HeartSurfaceWidget(object):
