@@ -8,7 +8,9 @@ import re
 
 from opencmiss.zinc.field import Field
 from opencmiss.zinc.status import OK
-from opencmiss.utils.zinc import createFiniteElementField, create2DFiniteElement
+# from opencmiss.utils.zinc import createFiniteElementField, create2DFiniteElement
+from opencmiss.utils.zinc.field import createFieldFiniteElement
+from opencmiss.utils.zinc.finiteelement import createSquareElement
 from opencmiss.utils.image import extractImageCorners
 
 from mapclientplugins.heartsurfacesegmenterstep.maths.algorithms import calculatePlaneNormal
@@ -128,9 +130,12 @@ class ImageTexture(object):
         self._region = region
 
         fieldmodule = region.getFieldmodule()
-        self._coordinate_field = createFiniteElementField(region)
+        # self._coordinate_field = createFiniteElementField(region)
+        self._coordinate_field = createFieldFiniteElement(region)
         corners = extractImageCorners(directory, filename)
-        create2DFiniteElement(fieldmodule, self._coordinate_field, corners)
+        # create2DFiniteElement(fieldmodule, self._coordinate_field, corners)
+        mesh = fieldmodule.findMeshByDimension(2)
+        createSquareElement(mesh, self._coordinate_field, corners)
         self._image_field = self._createImageField(fieldmodule, os.path.join(directory, filename))
         self._material = self._createMaterialUsingImageField(self._image_field)
 
