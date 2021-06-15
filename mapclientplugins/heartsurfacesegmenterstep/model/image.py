@@ -8,7 +8,6 @@ import re
 
 from opencmiss.zinc.field import Field
 from opencmiss.zinc.status import OK
-# from opencmiss.utils.zinc import createFiniteElementField, create2DFiniteElement
 from opencmiss.utils.zinc.field import createFieldFiniteElement
 from opencmiss.utils.zinc.finiteelement import createSquareElement
 from opencmiss.utils.image import extractImageCorners
@@ -111,13 +110,6 @@ class ImageModel(object):
         self._region = region.createChild('image_region')
 
 
-#         region = self._context.getDefaultRegion().findChildByName('image')
-#         if not region.isValid():
-#             region = self._context.getDefaultRegion().createChild('image')
-#             
-#         self._region = region
-
-
 def determineAxis(name):
     return LONG_AXIS
 
@@ -130,10 +122,8 @@ class ImageTexture(object):
         self._region = region
 
         fieldmodule = region.getFieldmodule()
-        # self._coordinate_field = createFiniteElementField(region)
         self._coordinate_field = createFieldFiniteElement(region)
         corners = extractImageCorners(directory, filename)
-        # create2DFiniteElement(fieldmodule, self._coordinate_field, corners)
         mesh = fieldmodule.findMeshByDimension(2)
         createSquareElement(mesh, self._coordinate_field, corners)
         self._image_field = self._createImageField(fieldmodule, os.path.join(directory, filename))
@@ -144,7 +134,7 @@ class ImageTexture(object):
         Use an image field in a material to create an OpenGL texture.  Returns the
         created material.
         '''
-        # create a graphics material from the graphics module, assign it a name
+        # Create a graphics material from the graphics module, assign it a name
         # and set flag to true
         materials_module = self._parent.getContext().getMaterialmodule()
         material = materials_module.createMaterial()
