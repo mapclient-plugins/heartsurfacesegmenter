@@ -7,7 +7,6 @@ import json
 
 from opencmiss.zinc.field import Field
 from opencmiss.zinc.status import OK
-#from opencmiss.utils.zinc import createFiniteElementField
 from opencmiss.utils.zinc.field import createFieldFiniteElement
 
 ENDO = 1
@@ -173,7 +172,6 @@ class NodeModel(object):
     def _setupRegion(self, region):
         self._region = region.createChild(
             'node_region')  # self._context.createRegion() #  self._context.getDefaultRegion().createChild('surfaces')
-        # self._coordinate_field = createFiniteElementField(self._region)
         self._coordinate_field = createFieldFiniteElement(self._region)
         fieldmodule = self._region.getFieldmodule()
         nodeset = fieldmodule.findNodesetByName('nodes')
