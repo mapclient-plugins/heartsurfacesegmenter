@@ -270,7 +270,7 @@
   <customwidget>
    <class>SegmentationWidget</class>
    <extends>QWidget</extends>
-   <header>mapclientplugins\heartsurfacesegmenterstep\view\segmentationwidget.h</header>
+   <header>mapclientplugins/heartsurfacesegmenterstep/view/segmentationwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

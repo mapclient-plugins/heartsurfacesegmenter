@@ -1,4 +1,3 @@
-
 '''
 MAP Client Plugin Step
 '''
@@ -21,7 +20,7 @@ class HeartSurfaceSegmenterStep(WorkflowStepMountPoint):
 
     def __init__(self, location):
         super(HeartSurfaceSegmenterStep, self).__init__('Heart Surface Segmenter', location)
-        self._configured = False # A step cannot be executed until it has been configured.
+        self._configured = False  # A step cannot be executed until it has been configured.
         self._category = 'Segmentation'
         # Add any other initialisation code here:
         # Ports:
@@ -63,7 +62,7 @@ class HeartSurfaceSegmenterStep(WorkflowStepMountPoint):
             self._view.setImageData(SHORT_AXIS, self._image_data_short_axis)
 
         self._view.initialise()
-        
+
         self._setCurrentWidget(self._view)
 
     def setPortData(self, index, dataIn):
@@ -73,9 +72,9 @@ class HeartSurfaceSegmenterStep(WorkflowStepMountPoint):
         uses port for this step then the index can be ignored.
         '''
         if index == 2:
-            self._image_data_long_axis = dataIn # http://physiomeproject.org/workflow/1.0/rdf-schema#images
+            self._image_data_long_axis = dataIn  # http://physiomeproject.org/workflow/1.0/rdf-schema#images
         else:
-            self._image_data_short_axis = dataIn # http://physiomeproject.org/workflow/1.0/rdf-schema#images
+            self._image_data_short_axis = dataIn  # http://physiomeproject.org/workflow/1.0/rdf-schema#images
 
     def getPortData(self, index):
         '''
@@ -98,15 +97,15 @@ class HeartSurfaceSegmenterStep(WorkflowStepMountPoint):
         then set:
             self._configured = True
         '''
-        dlg = ConfigureDialog()
+        dlg = ConfigureDialog(self._main_window)
         dlg.identifierOccursCount = self._identifierOccursCount
         dlg.setConfig(self._config)
         dlg.validate()
         dlg.setModal(True)
-        
+
         if dlg.exec_():
             self._config = dlg.getConfig()
-        
+
         self._configured = dlg.validate()
         self._configuredObserver()
 
@@ -129,7 +128,6 @@ class HeartSurfaceSegmenterStep(WorkflowStepMountPoint):
         '''
         return json.dumps(self._config, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
-
     def deserialize(self, string):
         '''
         Add code to deserialize this step from string.  This method should
@@ -141,5 +139,3 @@ class HeartSurfaceSegmenterStep(WorkflowStepMountPoint):
         d.identifierOccursCount = self._identifierOccursCount
         d.setConfig(self._config)
         self._configured = d.validate()
-
-
