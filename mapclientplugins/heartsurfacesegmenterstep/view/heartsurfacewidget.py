@@ -3,7 +3,7 @@ Created on May 21, 2015
 
 @author: hsorby
 '''
-from PySide2 import QtCore, QtWidgets
+from PySide6 import QtCore, QtWidgets
 
 from mapclientplugins.heartsurfacesegmenterstep.view.ui_heartsurfacewidget import Ui_HeartSurfaceWidget
 from mapclientplugins.heartsurfacesegmenterstep.scene.master import HeartSurfaceScene
