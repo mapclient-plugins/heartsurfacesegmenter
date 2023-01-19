@@ -2,7 +2,7 @@
 MAP Client Plugin
 '''
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 __author__ = 'Hugh Sorby'
 __stepname__ = 'Heart Surface'
 __location__ = 'https://github.com/mapclient-plugins/heartsurfacesegmenter/archive/v0.1.1.zip'
