@@ -3,8 +3,8 @@ Created on May 22, 2015
 
 @author: hsorby
 '''
-from opencmiss.zinc.glyph import Glyph
-from opencmiss.zinc.field import Field
+from cmlibs.zinc.glyph import Glyph
+from cmlibs.zinc.field import Field
 
 
 class NodeScene(object):

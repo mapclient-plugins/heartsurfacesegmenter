@@ -3,7 +3,7 @@ Created on May 21, 2015
 
 @author: hsorby
 '''
-from opencmiss.zinc.context import Context
+from cmlibs.zinc.context import Context
 
 from mapclientplugins.heartsurfacesegmenterstep.model.image import ImageModel
 from mapclientplugins.heartsurfacesegmenterstep.model.node import NodeModel

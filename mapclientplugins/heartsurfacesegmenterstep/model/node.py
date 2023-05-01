@@ -5,9 +5,9 @@ Created on May 22, 2015
 '''
 import json
 
-from opencmiss.zinc.field import Field
-from opencmiss.zinc.status import OK
-from opencmiss.utils.zinc.field import createFieldFiniteElement
+from cmlibs.zinc.field import Field
+from cmlibs.zinc.status import OK
+from cmlibs.utils.zinc.field import createFieldFiniteElement
 
 ENDO = 1
 EPI = 2

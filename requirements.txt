@@ -1,1 +1,1 @@
-http://github.com/OpenCMISS-Bindings/opencmiss.utils/archive/v0.1.1.zip#egg=opencmiss.utils
+cmlibs.utils

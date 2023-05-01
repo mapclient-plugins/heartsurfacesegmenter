@@ -5,9 +5,9 @@ Created on May 22, 2015
 '''
 from PySide6 import QtCore
 
-from opencmiss.zincwidgets.sceneviewerwidget import SceneviewerWidget
+from cmlibs.widgets.sceneviewerwidget import SceneviewerWidget
 
-from opencmiss.utils.maths.algorithms import calculateLinePlaneIntersection
+from cmlibs.maths.algorithms import calculateLinePlaneIntersection
 
 
 class SegmentationWidget(SceneviewerWidget):
