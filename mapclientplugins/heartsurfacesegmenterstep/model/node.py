@@ -178,15 +178,12 @@ class NodeModel(object):
 
         # Setup the selection fields
         self._selection_group_field = fieldmodule.createFieldGroup()
-        node_group = self._selection_group_field.createFieldNodeGroup(nodeset)
-        self._selection_group = node_group.getNodesetGroup()
+        self._selection_group = self._selection_group_field.createNodesetGroup(nodeset)
 
         # Setup the selection fields
         self._endo_group_field = fieldmodule.createFieldGroup()
-        node_group = self._endo_group_field.createFieldNodeGroup(nodeset)
-        self._endo_group = node_group.getNodesetGroup()
+        self._endo_group = self._endo_group_field.createNodesetGroup(nodeset)
 
         # Setup the selection fields
         self._epi_group_field = fieldmodule.createFieldGroup()
-        node_group = self._epi_group_field.createFieldNodeGroup(nodeset)
-        self._epi_group = node_group.getNodesetGroup()
+        self._epi_group = self._epi_group_field.createNodesetGroup(nodeset)
