@@ -7,7 +7,7 @@ import json
 
 from cmlibs.zinc.field import Field
 from cmlibs.zinc.status import OK
-from cmlibs.utils.zinc.field import createFieldFiniteElement
+from cmlibs.utils.zinc.field import create_field_coordinates
 
 ENDO = 1
 EPI = 2
@@ -172,9 +172,9 @@ class NodeModel(object):
     def _setupRegion(self, region):
         self._region = region.createChild(
             'node_region')  # self._context.createRegion() #  self._context.getDefaultRegion().createChild('surfaces')
-        self._coordinate_field = createFieldFiniteElement(self._region)
         fieldmodule = self._region.getFieldmodule()
         nodeset = fieldmodule.findNodesetByName('nodes')
+        self._coordinate_field = create_field_coordinates(fieldmodule, managed=True)
 
         # Setup the selection fields
         self._selection_group_field = fieldmodule.createFieldGroup()

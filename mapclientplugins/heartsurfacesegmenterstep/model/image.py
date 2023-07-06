@@ -8,8 +8,8 @@ import re
 
 from cmlibs.zinc.field import Field
 from cmlibs.zinc.status import OK
-from cmlibs.utils.zinc.field import createFieldFiniteElement
-from cmlibs.utils.zinc.finiteelement import createSquareElement
+from cmlibs.utils.zinc.field import create_field_coordinates
+from cmlibs.utils.zinc.finiteelement import create_square_element
 from cmlibs.utils.image import extractImageCorners
 
 from mapclientplugins.heartsurfacesegmenterstep.maths.algorithms import calculatePlaneNormal
@@ -122,10 +122,10 @@ class ImageTexture(object):
         self._region = region
 
         fieldmodule = region.getFieldmodule()
-        self._coordinate_field = createFieldFiniteElement(region)
+        self._coordinate_field = create_field_coordinates(fieldmodule, managed=True)
         corners = extractImageCorners(directory, filename)
         mesh = fieldmodule.findMeshByDimension(2)
-        createSquareElement(mesh, self._coordinate_field, corners)
+        create_square_element(mesh, self._coordinate_field, corners)
         self._image_field = self._createImageField(fieldmodule, os.path.join(directory, filename))
         self._material = self._createMaterialUsingImageField(self._image_field)
 
