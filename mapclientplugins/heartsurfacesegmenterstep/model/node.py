@@ -7,7 +7,7 @@ import json
 
 from cmlibs.zinc.field import Field
 from cmlibs.zinc.status import OK
-from cmlibs.utils.zinc.field import createFieldFiniteElement
+from cmlibs.utils.zinc.field import create_field_coordinates
 
 ENDO = 1
 EPI = 2
@@ -172,21 +172,18 @@ class NodeModel(object):
     def _setupRegion(self, region):
         self._region = region.createChild(
             'node_region')  # self._context.createRegion() #  self._context.getDefaultRegion().createChild('surfaces')
-        self._coordinate_field = createFieldFiniteElement(self._region)
         fieldmodule = self._region.getFieldmodule()
         nodeset = fieldmodule.findNodesetByName('nodes')
+        self._coordinate_field = create_field_coordinates(fieldmodule, managed=True)
 
         # Setup the selection fields
         self._selection_group_field = fieldmodule.createFieldGroup()
-        node_group = self._selection_group_field.createFieldNodeGroup(nodeset)
-        self._selection_group = node_group.getNodesetGroup()
+        self._selection_group = self._selection_group_field.createNodesetGroup(nodeset)
 
         # Setup the selection fields
         self._endo_group_field = fieldmodule.createFieldGroup()
-        node_group = self._endo_group_field.createFieldNodeGroup(nodeset)
-        self._endo_group = node_group.getNodesetGroup()
+        self._endo_group = self._endo_group_field.createNodesetGroup(nodeset)
 
         # Setup the selection fields
         self._epi_group_field = fieldmodule.createFieldGroup()
-        node_group = self._epi_group_field.createFieldNodeGroup(nodeset)
-        self._epi_group = node_group.getNodesetGroup()
+        self._epi_group = self._epi_group_field.createNodesetGroup(nodeset)
